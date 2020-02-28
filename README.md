@@ -9,7 +9,7 @@
     Project name can either be the full length project name (if there is one) or just the repo name. For example: Digital Experience Manager.
 -->
 
-Jahi User Entries
+Jahia User Entries
 ======================
 
 Module containing various user specific entries (profile, workflow etc.) components for Jahia 8
