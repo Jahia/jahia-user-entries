@@ -1,13 +1,23 @@
 import React from 'react';
-import Iframe from 'react-iframe';
-import {useSelector} from 'react-redux';
+import {useTranslation} from 'react-i18next';
+import {PrimaryNavItem} from '@jahia/moonstone';
+import Person from '@jahia/moonstone/dist/icons/Person';
+import {useHistory} from 'react-router';
+import ProfileConstants from './Profile.constants';
+import LogoutButton from './LogoutButton';
 
-let path = (locale, user) => {
-    return `/cms/dashboardframe/default/${locale}${user}.me.html?redirect=false`;
+const Profile = () => {
+    const history = useHistory();
+    const {t} = useTranslation('jahia-user-entries');
+
+    return (
+        <PrimaryNavItem icon={<Person/>}
+                        subtitle={`${window.contextJsParameters.user.fullname} (${window.contextJsParameters.user.email})`}
+                        label={t('userEntries.profile.label')}
+                        button={<LogoutButton/>}
+                        isSelected={history.location.pathname.startsWith(ProfileConstants.ROUTE)}
+                        onClick={() => history.push(ProfileConstants.ROUTE)}/>
+    );
 };
 
-export default function () {
-    const redux = useSelector(state => ({language: state.language}));
-
-    return <Iframe url={window.contextJsParameters.contextPath + path(redux.language, window.contextJsParameters.currentUserPath)} width="100%" height="100%"/>;
-}
+export default Profile;
