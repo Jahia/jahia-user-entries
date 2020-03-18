@@ -39,13 +39,15 @@ export const WorkflowGroup = () => {
 
 registry.add('primary-nav-item', 'workflowNavGroup', {
     targets: ['nav-root-tasks:2'],
+    requiredPermission: 'workflow-dashboard-access',
     render: () => <WorkflowGroup key="workflowGroup"/>
 });
 
-// Register wiokrflow component
+// Register workflow component
 registry.add('route', 'workflow', {
     targets: ['nav-root-top'],
     path: PATH,
     defaultPath: PATH,
+    requiredPermission: 'workflow-dashboard-access',
     render: () => <Workflow/>
 });
