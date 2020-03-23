@@ -15,14 +15,10 @@ let checkAuthoringApi;
 
 const Workflow = () => {
     useEffect(() => {
-        if (window.authoringApi === undefined || window.authoringApi.openWorkflow === undefined) {
-            checkAuthoringApi = setInterval(() => {
-                renderWorkflow();
-            },
-            100);
-        }
-
-        renderWorkflow();
+        checkAuthoringApi = setInterval(() => {
+            renderWorkflow();
+        },
+        200);
     }, []);
     return (
         <div style={{
