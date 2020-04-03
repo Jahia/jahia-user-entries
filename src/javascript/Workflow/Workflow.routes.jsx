@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 import {PrimaryNavItem, Badge} from '@jahia/moonstone';
 import {useTranslation} from 'react-i18next';
 import {useQuery} from 'react-apollo';
-import WorkflowIcon from '@jahia/moonstone/dist/icons/Workflow';
+import WorkflowIcon from '@jahia/moonstone/dist/icons/Task';
 import Workflow from './Workflow';
 import {NumberOfWorkflowsQuery} from './Workflow.gql-querys';
 const PATH = '/workflow';
