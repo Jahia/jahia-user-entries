@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 import {PrimaryNavItem, Badge} from '@jahia/moonstone';
 import {useTranslation} from 'react-i18next';
 import {useQuery} from 'react-apollo';
-import WorkflowIcon from '@jahia/moonstone/dist/icons/Workflow';
+import TaskIcon from '@jahia/moonstone/dist/icons/Task';
 import Workflow from './Workflow';
 import {NumberOfWorkflowsQuery} from './Workflow.gql-querys';
 const PATH = '/workflow';
@@ -31,7 +31,7 @@ export const WorkflowGroup = () => {
             role="workflow-menu-item"
             badge={badge}
             isSelected={history.location.pathname.startsWith(PATH)}
-            icon={<WorkflowIcon/>}
+            icon={<TaskIcon/>}
             label={t('userEntries.workflow.label')}
             onClick={() => history.push(PATH)}/>
     );
