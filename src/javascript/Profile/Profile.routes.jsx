@@ -9,7 +9,7 @@ registry.add('primary-nav-item', 'bottomProfileNavGroup', {
 });
 
 registry.add('route', 'profile', {
-    targets: ['nav-root-top'],
+    targets: ['main'],
     path: ProfileConstants.ROUTE,
     defaultPath: ProfileConstants.ROUTE,
     render: () => <IframeRenderer url={`${window.contextJsParameters.contextPath}/cms/dashboardframe/default/$lang/${window.contextJsParameters.currentUserPath}.me.html?redirect=false`}/>

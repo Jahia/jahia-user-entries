@@ -45,7 +45,7 @@ registry.add('primary-nav-item', 'workflowNavGroup', {
 
 // Register workflow component
 registry.add('route', 'workflow', {
-    targets: ['nav-root-top'],
+    targets: ['main'],
     path: PATH,
     defaultPath: PATH,
     requiredPermission: 'workflow-dashboard-access',
