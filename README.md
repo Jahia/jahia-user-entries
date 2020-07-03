@@ -16,4 +16,4 @@ Module containing various user specific entries (profile, workflow etc.) compone
 
 ## Open-Source
 
-Channels is an Open-Source module, you can find more details about Open-Source @ Jahia [in this repository](https://github.com/Jahia/open-source).
+This is an Open-Source module, you can find more details about Open-Source @ Jahia [in this repository](https://github.com/Jahia/open-source).
