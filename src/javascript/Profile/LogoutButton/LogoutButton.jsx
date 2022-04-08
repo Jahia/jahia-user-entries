@@ -12,7 +12,7 @@ const LogoutButton = () => {
                 variant="ghost"
                 label={t('userEntries.profile.signOut')}
                 onClick={() => {
-                    let url = window.contextJsParameters.contextPath + '/cms/logout?redirect=' + window.contextJsParameters.contextPath + '/start';
+                    let url = window.contextJsParameters.config.logoutUrl || window.contextJsParameters.contextPath + '/cms/logout?redirect=' + window.contextJsParameters.contextPath + '/start';
                     window.location.assign(url);
                 }}/>
     );

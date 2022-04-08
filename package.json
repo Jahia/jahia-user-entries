@@ -26,6 +26,9 @@
   "jahia": {
     "remotes": {
       "jahia": "javascript/apps/remoteEntry.js"
+    },
+    "apps": {
+      "jahia": "configs/jahiaUserEntries.jsp"
     }
   },
   "dependencies": {
