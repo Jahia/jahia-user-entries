@@ -14,7 +14,7 @@ export default function () {
     const WorkflowGroup = () => {
         const {t} = useTranslation('jahia-user-entries');
         const history = useHistory();
-        const {data} = useSubscription(NumberOfWorkflowsSubscription, {});
+        const {data} = useSubscription(NumberOfWorkflowsSubscription);
 
         const badge = data && data.workflowEvent.activeWorkflowTaskCountForUser > 0 ? (
             <Badge
