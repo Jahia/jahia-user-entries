@@ -46,8 +46,9 @@
 
     <properties>
         <jahia-module-type>system</jahia-module-type>
-        <jahia-module-signature>MCwCFGHxjDIw8u9M5wH8zrUQJplFq20yAhQZM2bSrhvTPLFIlfg712uc6GU5IQ==</jahia-module-signature>
+        <jahia-module-signature>MC0CFBzidmsZZKol1QRwQX7ZKPZifQVdAhUAgz9JENfmOJGIqJO9cySDFlhKBUg=</jahia-module-signature>
         <yarn.arguments>build:production</yarn.arguments>
+        <!-- <jahia-depends>graphql-dxm-provider=[2.12.0,99]</jahia-depends> --> <!-- TODO uncomment when gql 2.12.0 is released -->
     </properties>
 
     <repositories>
@@ -124,7 +125,7 @@
                             <goal>install-node-and-yarn</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v14.16.0</nodeVersion>
+                            <nodeVersion>v14.17.0</nodeVersion>
                             <yarnVersion>v1.22.11</yarnVersion>
                         </configuration>
                     </execution>

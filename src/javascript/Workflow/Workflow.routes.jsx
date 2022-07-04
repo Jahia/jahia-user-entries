@@ -1,30 +1,26 @@
 import React from 'react';
 import {registry} from '@jahia/ui-extender';
 import {useHistory} from 'react-router-dom';
-import {PrimaryNavItem, Badge} from '@jahia/moonstone';
+import {Badge, PrimaryNavItem} from '@jahia/moonstone';
 import {useTranslation} from 'react-i18next';
-import {useQuery} from '@apollo/react-hooks';
+import {useSubscription} from '@apollo/react-hooks';
 import TaskIcon from '@jahia/moonstone/dist/icons/Task';
 import Workflow from './Workflow';
-import {NumberOfWorkflowsQuery} from './Workflow.gql-querys';
+import {NumberOfWorkflowsSubscription} from './Workflow.gql-queries';
 
 export default function () {
     const PATH = '/workflow';
 
-    const POLL_INTERVAL = 10000; // 10 seconds
-
     const WorkflowGroup = () => {
         const {t} = useTranslation('jahia-user-entries');
         const history = useHistory();
-        const {data} = useQuery(NumberOfWorkflowsQuery, {
-            pollInterval: POLL_INTERVAL
-        });
+        const {data} = useSubscription(NumberOfWorkflowsSubscription);
 
-        const badge = data && data.jcr.activeWorkflowTaskCountForUser > 0 ? (
+        const badge = data && data.workflowEvent.activeWorkflowTaskCountForUser > 0 ? (
             <Badge
                 type="round"
                 color="danger"
-                label={data.jcr.activeWorkflowTaskCountForUser}
+                label={data.workflowEvent.activeWorkflowTaskCountForUser}
             />
         ) : null;
 
