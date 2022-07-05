@@ -39,7 +39,7 @@ jobs:
         with:
           nexus_username: ${{ secrets.NEXUS_USERNAME }}
           nexus_password: ${{ secrets.NEXUS_PASSWORD }}
-          module_id: jahia-ui-root
+          module_id: jahia-user-entries
 
   publish:
     name: Publish module
