@@ -6,12 +6,13 @@ import {useHistory} from 'react-router';
 import ProfileConstants from './Profile.constants';
 import LogoutButton from './LogoutButton';
 
-const Profile = () => {
+const ProfileItem = props => {
     const history = useHistory();
     const {t} = useTranslation('jahia-user-entries');
 
     return (
-        <PrimaryNavItem icon={<Person/>}
+        <PrimaryNavItem {...props}
+                        icon={<Person/>}
                         subtitle={`${window.contextJsParameters.user.fullname} (${window.contextJsParameters.user.email})`}
                         label={t('userEntries.profile.label')}
                         button={<LogoutButton/>}
@@ -20,4 +21,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default ProfileItem;

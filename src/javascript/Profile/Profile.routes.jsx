@@ -1,12 +1,12 @@
 import React from 'react';
 import {registry, IframeRenderer} from '@jahia/ui-extender';
 import ProfileConstants from './Profile.constants';
-import Profile from './Profile';
+import ProfileItem from './ProfileItem';
 
 export default function () {
-    registry.add('primary-nav-item', 'bottomProfileNavGroup', {
+    registry.add('primary-nav-item', 'profile', {
         targets: ['nav-root-profile:1'],
-        render: () => <Profile/>
+        render: () => <ProfileItem/>
     });
 
     registry.add('route', 'profile', {
