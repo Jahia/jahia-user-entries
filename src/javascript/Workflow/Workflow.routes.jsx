@@ -11,7 +11,7 @@ import {NumberOfWorkflowsSubscription} from './Workflow.gql-queries';
 export default function () {
     const PATH = '/workflow';
 
-    const WorkflowGroup = () => {
+    const WorkflowItem = props => {
         const {t} = useTranslation('jahia-user-entries');
         const history = useHistory();
         const {data} = useSubscription(NumberOfWorkflowsSubscription);
@@ -26,7 +26,7 @@ export default function () {
 
         return (
             <PrimaryNavItem
-                role="workflow-menu-item"
+                {...props}
                 badge={badge}
                 isSelected={history.location.pathname.startsWith(PATH)}
                 icon={<TaskIcon/>}
@@ -35,10 +35,10 @@ export default function () {
         );
     };
 
-    registry.add('primary-nav-item', 'workflowNavGroup', {
+    registry.add('primary-nav-item', 'workflow', {
         targets: ['nav-root-tasks:2'],
         requiredPermission: 'workflow-dashboard-access',
-        render: () => <WorkflowGroup key="workflowGroup"/>
+        render: () => <WorkflowItem key="workflowGroup"/>
     });
 
     // Register workflow component
