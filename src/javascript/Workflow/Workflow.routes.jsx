@@ -7,6 +7,7 @@ import {useSubscription} from '@apollo/react-hooks';
 import TaskIcon from '@jahia/moonstone/dist/icons/Task';
 import Workflow from './Workflow';
 import {NumberOfWorkflowsSubscription} from './Workflow.gql-queries';
+import {shallowEqual, useSelector} from 'react-redux';
 
 export default function () {
     const PATH = '/workflow';
@@ -14,6 +15,9 @@ export default function () {
     const WorkflowItem = props => {
         const {t} = useTranslation('jahia-user-entries');
         const history = useHistory();
+        const {pathname} = useSelector(state => ({
+            pathname: state.router.location.pathname
+        }), shallowEqual);
         const {data} = useSubscription(NumberOfWorkflowsSubscription);
 
         const badge = data && data.workflowEvent.activeWorkflowTaskCountForUser > 0 ? (
@@ -28,7 +32,7 @@ export default function () {
             <PrimaryNavItem
                 {...props}
                 badge={badge}
-                isSelected={history.location.pathname.startsWith(PATH)}
+                isSelected={pathname.startsWith(PATH)}
                 icon={<TaskIcon/>}
                 label={t('userEntries.workflow.label')}
                 onClick={() => history.push(PATH)}/>
