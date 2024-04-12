@@ -1,6 +1,6 @@
 {
   "name": "@jahia/jahia-user-entries",
-  "version": "1.6.0",
+  "version": "1.7.0-SNAPSHOT",
   "husky": {
     "hooks": {
       "pre-push": "yarn lint:fix"
