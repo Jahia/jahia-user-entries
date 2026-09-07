@@ -1,11 +1,14 @@
 {
-  "userEntries" : {
+  "userEntries": {
     "profile": {
       "label": "My Profile",
       "signOut": "Sign out"
     },
     "workflow": {
       "label": "Workflow"
+    },
+    "notifications": {
+      "title": "Notifications"
     }
   }
 }
