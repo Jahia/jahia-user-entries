@@ -1,7 +1,17 @@
 <%@ page import="org.apache.commons.lang.StringUtils"%>
     <%@ page import="org.jahia.params.valves.LogoutConfig"%>
     <%@ page import="org.jahia.bin.Logout"%><%@ page import="java.net.URLEncoder"%>
+    <%@ page import="org.apache.commons.lang.StringEscapeUtils"%>
+    <%@ page import="javax.jcr.RepositoryException"%>
+    <%@ page import="org.jahia.services.content.JCRNodeWrapper"%>
+    <%@ page import="org.jahia.services.content.JCRSessionFactory"%>
+    <%@ page import="org.jahia.services.usermanager.JahiaUser"%>
     <%@ page language="java" contentType="text/javascript" %>
+    <%
+    // What follows depends on who is logged in, so no shared cache may keep it.
+    response.addHeader("Pragma", "no-cache");
+    response.setHeader("Cache-Control", "no-cache");
+    %>
     <%-- Read logout url as done in org.jahia.services.render.URLGenerator.getLogout() --%>
     <%
     String redirect = "redirect=" + request.getContextPath() + "/start";
@@ -25,6 +35,25 @@
     } else {
         logoutUrl = request.getContextPath() + Logout.getLogoutServletPath() + "?" + redirect;
     }
+
+    // The user's picture, for the profile entry of the navigation. This script is already
+    // fetched on every load of the UI, so the picture costs no request of its own: it is read
+    // from the user node through the JCR item cache, and the image node is only resolved when
+    // the user has set one. The 60px avatar is a thumbnail core creates with the picture.
+    String userPictureUrl = "";
+    JahiaUser currentUser = JCRSessionFactory.getInstance().getCurrentUser();
+    if (currentUser != null) {
+        try {
+            JCRNodeWrapper userNode = JCRSessionFactory.getInstance().getCurrentUserSession().getNode(currentUser.getLocalPath());
+            if (userNode.hasProperty("j:picture")) {
+                JCRNodeWrapper picture = (JCRNodeWrapper) userNode.getProperty("j:picture").getNode();
+                userPictureUrl = picture.hasNode("avatar_60") ? picture.getThumbnailUrl("avatar_60") : picture.getUrl();
+            }
+        } catch (RepositoryException e) {
+            // No readable picture: the navigation keeps its default icon.
+        }
+    }
     %>
     contextJsParameters.config.logoutUrl = "<%=logoutUrl%>";
+    contextJsParameters.config.userPictureUrl = "<%=StringEscapeUtils.escapeJavaScript(userPictureUrl)%>";
 

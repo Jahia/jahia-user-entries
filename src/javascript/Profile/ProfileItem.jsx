@@ -6,6 +6,7 @@ import {useHistory} from 'react-router';
 import ProfileConstants from './Profile.constants';
 import LogoutButton from './LogoutButton';
 import {useProfileNotifications} from './Notifications';
+import styles from './ProfileItem.scss';
 
 const ProfileItem = props => {
     const history = useHistory();
@@ -16,10 +17,13 @@ const ProfileItem = props => {
     // registry data attributes.
     const {items, openPanel, closePanel} = useProfileNotifications();
     const hasNotifications = items.length > 0;
+    // Set by configs/jahiaUserEntries.jsp, which the page loads anyway: empty when the user has
+    // no picture, so showing it costs no request beyond the image itself.
+    const pictureUrl = window.contextJsParameters.config?.userPictureUrl;
 
     return (
         <PrimaryNavItem {...props}
-                        icon={<Person/>}
+                        icon={pictureUrl ? <img className={styles.avatar} src={pictureUrl} alt=""/> : <Person/>}
                         subtitle={`${window.contextJsParameters.user.fullname} (${window.contextJsParameters.user.email})`}
                         label={t('userEntries.profile.label')}
                         button={<LogoutButton/>}

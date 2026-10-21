@@ -1,0 +1,10 @@
+/* The user's picture in place of the Person icon. Larger than the 24px glyphs beside it,
+   because a round photo reads smaller than an icon filling its square; still inside the
+   40px slot Moonstone gives each rail item. Cropped round like every other avatar. */
+.avatar {
+    display: block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
